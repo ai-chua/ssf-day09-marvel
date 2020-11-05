@@ -1,9 +1,35 @@
 // Load .env file
 require('dotenv').config();
 
-// console.log(`${ts('YYYYMMDDHHMMSS')} ${process.env.PRIVATE_API_KEY} ${process.env.PUBLIC_API_KEY}`)
-// console.log(md5(`${ts('YYYYMMDDHHMMSS')} ${process.env.PRIVATE_API_KEY} ${process.env.PUBLIC_API_KEY}`))
+// Load required libraries from node_modules
+const express = require('express')
+const hbs = require('express-handlebars')
 
-const getChars = require('./public/javascript/getCharacter')
+// Configure the environment
+const PORT = parseInt(process.env.PORT) || 3000
 
-console.log(getChars('captain'))
+// Create an instance of the express application
+const app = express()
+
+// Configure the public and static files
+app.use(express.static(__dirname + '/public'))
+app.use(express.static(__dirname + '/routes'))
+
+// Configure handlebars to manage views
+app.engine('hbs', hbs({ defaultLayout: 'default.hbs' }))
+app.set('view engine', 'hbs')
+app.set('views', __dirname + '/views')
+
+// Load router from routes.js
+const router = require('./routes/routes')
+
+app.use(router())
+
+// Start express
+app.listen(PORT, () => { // first parameter = port number
+	console.log(`Application started on port ${PORT} at ${new Date()}`)
+})
+
+// const getChars = require('./public/javascript/get_character')
+
+// console.log(getChars('captain'))

@@ -1,0 +1,28 @@
+body, html {
+  background-color: white;
+}
+
+h1 {
+  color: #383e56;
+  font-weight: 700;
+}
+
+.home-search-item {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  height: 40vh;
+  width: 40vw;
+  background-color: #383e56;
+  color: #FFF;
+  border-radius: 2rem;
+}
+
+.home-search-item input, input:focus {
+  background-color: transparent !important;
+  outline: transparent !important;
+  color: #fff !important;
+  border-radius: 1rem;
+}

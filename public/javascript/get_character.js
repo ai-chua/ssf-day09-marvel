@@ -6,7 +6,6 @@ const ts = require('time-stamp');
 module.exports = async (char) => {
 	const timeStamp = ts('YYYYMMDDHHMMSS')
 	const hashToUse = md5([timeStamp, process.env.PRIVATE_API_KEY, process.env.PUBLIC_API_KEY].join(""))
-	console.log(hashToUse)
 	const url = withQuery(process.env.ENDPOINT, {
 		nameStartsWith: char,
 		apikey: process.env.PUBLIC_API_KEY,
